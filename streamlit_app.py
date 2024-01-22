@@ -87,9 +87,9 @@ ratio_df = ratio_df.sort_values('Periodo_dt')
 ratio_df['Utilizzato_to_Accordato_Operativo_Ratio_Percentage'] = ratio_df['Utilizzato_to_Accordato_Operativo_Ratio'] * 100
 
 #with col1:
- #   st.subheader("Utilizzato to Accordato Operativo Ratio over Time")
-  #  fig = px.bar(ratio_df, x = "Periodo_dt", y = "Utilizzato_to_Accordato_Operativo_Ratio_Percentage", template = "seaborn")
-   # st.plotly_chart(fig,use_container_width=True, height = 200)
+#    st.subheader("Utilizzato to Accordato Operativo Ratio over Time")
+#    fig = px.bar(ratio_df, x = "Periodo_dt", y = "Utilizzato_to_Accordato_Operativo_Ratio_Percentage", template = "seaborn")
+#    st.plotly_chart(fig,use_container_width=True, height = 200)
 
 #with col2:
 #    st.subheader("Utilizzato per Intermediario")
