@@ -7,12 +7,8 @@ import os
 import plotly.express as px
 from my_functons import italian_date_to_datetime, extract_text_segments, extract_numbers_after_zero, extract_intermediario_names, extract_intermediario_section, create_df_from_pdf
 
-"""
 # Welcome to Streamlit!
 
-Edit `/streamlit_app.py` to customize this app to your heart's desire :heart:.
-If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
-forums](https://discuss.streamlit.io).
 
 st.set_page_config(page_title="ANALISI CENTRALE RISCHI", page_icon=":bar_chart:",layout="wide")
 
