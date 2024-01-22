@@ -4,7 +4,7 @@ import pandas as pd
 import streamlit as st
 import io
 import os
-import plotly.express as px
+#import plotly.express as px
 from my_functons import italian_date_to_datetime, extract_text_segments, extract_numbers_after_zero, extract_intermediario_names, extract_intermediario_section, create_df_from_pdf
 
 # Welcome to Streamlit!
