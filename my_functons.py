@@ -37,6 +37,7 @@ def extract_text_segments(pdf_path):
                     text_segment_list.append(text_segments[-1].strip())
 
         return text_segment_list
+        
 def extract_numbers_after_zero(text, section_name):
     # Use a regular expression to find the first zero and extract the three numbers after it
     matches = re.finditer(fr'{section_name}.*?0.*?(\d+(?:\.\d+)*(?:\.\d+)?)\D+(\d+(?:\.\d+)*(?:\.\d+)?)\D+(\d+(?:\.\d+)*(?:\.\d+)?)', text)
@@ -48,6 +49,7 @@ def extract_numbers_after_zero(text, section_name):
         result.append(numbers)
 
     return result
+        
 def extract_intermediario_names(text):
         # Use a regular expression to find all occurrences of "Intermediario:" and their corresponding names
         matches = re.finditer(r'Intermediario:\s(.+?)\n', text)
@@ -55,6 +57,7 @@ def extract_intermediario_names(text):
         intermediario_names = [match.group(1) for match in matches] if matches else [None]
 
         return intermediario_names
+        
 def extract_intermediario_section(text):
     # Use a regular expression to find the section between "Intermediario:" and the next "Intermediario:" or end of string
     matches = re.finditer(r'Intermediario:(.+?)(?=(Intermediario:|$))', text, re.DOTALL)
@@ -76,8 +79,6 @@ def italian_date_to_datetime(italian_date):
     # Reset the locale to the default
     locale.setlocale(locale.LC_TIME, '')
 
-
-        
 def create_df_from_pdf(pdf_path):
 
     # Replace 'your_pdf_file.pdf' with the path to your PDF file
