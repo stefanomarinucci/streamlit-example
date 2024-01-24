@@ -36,7 +36,7 @@ if pdf_file:
         df = df[mask]
 
 col1, col2 = st.columns((2))
-df['Periodo_dt'] = df['Periodo'].apply(lambda x: italian_date_to_datetime(x) if pd.notna(x) else x)
+df['Periodo_dt'] = df['Periodo'].apply(italian_date_to_datetime)
 
 startDate = pd.to_datetime(df["Periodo_dt"]).min()
 endDate = pd.to_datetime(df["Periodo_dt"]).max()
