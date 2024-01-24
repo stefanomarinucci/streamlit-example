@@ -77,7 +77,7 @@ def italian_date_to_datetime(italian_date):
     date_object = datetime.strptime(italian_date, italian_date_format)
     
     # Reset the locale to the default
-    locale.setlocale(locale.LC_TIME, '')
+    locale.setlocale(locale.LC_ALL, '')
 
 def create_df_from_pdf(pdf_path):
 
