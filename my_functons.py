@@ -68,7 +68,7 @@ def extract_intermediario_section(text):
         
 def italian_date_to_datetime(italian_date):
     # Set the Italian locale
-    locale.setlocale(locale.LC_TIME, 'it_IT')
+    locale.setlocale(locale.LC_ALL, 'it_IT')
     
     # Specify the format of the Italian date string
     italian_date_format = "%B %Y"
