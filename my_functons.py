@@ -67,39 +67,17 @@ def extract_intermediario_section(text):
     return sections
 
 def italian_date_to_datetime(italian_date):
-    try:
-        # Save the current locale
-        current_locale = locale.getlocale()
-        
-        # Set the locale to a known working locale (e.g., 'en_US.utf8')
-        locale.setlocale(locale.LC_TIME, 'en_US.utf8')
-        
-        # Specify the format of the Italian date string
-        italian_date_format = "%B %Y"
-        
-        # Convert the string to a datetime object
-        date_object = datetime.strptime(italian_date, italian_date_format)
-        
-        return date_object
-    except ValueError as e:
-        # Handle the exception, e.g., print an error message
-        print(f"Error converting Italian date '{italian_date}': {e}")
-        return None
-    except locale.Error as e:
-        # Handle the locale error
-        print(f"Error setting locale: {e}")
-        return None
-     finally:
-             # Reset the locale to the original locale
-             if current_locale[0] is not None:
-                     try:
-                             locale.setlocale(locale.LC_TIME, current_locale)
-                      except locale.Error as e:
-                              # Handle the locale error during resetting
-                              print(f"Error resetting locale: {e}")
-              else:
-                      locale.setlocale(locale.LC_TIME, '')
-
+    # Set the Italian locale
+    locale.setlocale(locale.LC_ALL, 'it_IT')
+    
+    # Specify the format of the Italian date string
+    italian_date_format = "%B %Y"
+    
+    # Convert the string to a datetime object
+    date_object = datetime.strptime(italian_date, italian_date_format)
+    
+    # Reset the locale to the default
+    locale.setlocale(locale.LC_TIME, '')
 
 def create_df_from_pdf(pdf_path):
 
