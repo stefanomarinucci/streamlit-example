@@ -89,12 +89,17 @@ def italian_date_to_datetime(italian_date):
         # Handle the locale error
         print(f"Error setting locale: {e}")
         return None
-    finally:
-        # Reset the locale to the original locale
-        if current_locale[0] is not None:
-            locale.setlocale(locale.LC_TIME, current_locale)
-        else:
-            locale.setlocale(locale.LC_TIME, '')
+     finally:
+             # Reset the locale to the original locale
+             if current_locale[0] is not None:
+                     try:
+                             locale.setlocale(locale.LC_TIME, current_locale)
+                      except locale.Error as e:
+                              # Handle the locale error during resetting
+                              print(f"Error resetting locale: {e}")
+              else:
+                      locale.setlocale(locale.LC_TIME, '')
+
 
 def create_df_from_pdf(pdf_path):
 
