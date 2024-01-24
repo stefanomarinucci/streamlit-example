@@ -6,6 +6,18 @@ import io
 import os
 #import plotly.express as px
 from my_functons import italian_date_to_datetime, extract_text_segments, extract_numbers_after_zero, extract_intermediario_names, extract_intermediario_section, create_df_from_pdf
+import re
+import pdfplumber
+from collections import namedtuple
+#import pandas as pd
+#import numpy as np
+import matplotlib 
+import matplotlib.pyplot as plt
+#import os
+import seaborn as sns
+from datetime import datetime
+import locale
+
 
 # Welcome to Streamlit!
 
