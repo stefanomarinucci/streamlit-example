@@ -3,7 +3,6 @@
 import re
 import pdfplumber
 from collections import namedtuple
-import tkinter
 import pandas as pd
 import numpy as np
 import matplotlib 
