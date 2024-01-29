@@ -46,7 +46,7 @@ mask = (
 
 # Apply the mask to filter the DataFrame
 df = df[mask]
-print(df)
+st.write(df)
 
 col1, col2 = st.columns((2))
 df['Periodo_dt'] = df['Periodo'].apply(italian_date_to_datetime)
