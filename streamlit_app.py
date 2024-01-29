@@ -37,15 +37,15 @@ if pdf_file:
     # Carica un DataFrame di esempio (puoi sostituire questo passo con il caricamento dei tuoi dati)
         df = create_df_from_pdf(pdf_file)
 
-        # Create a mask based on the specified conditions
-        mask = (
-            (df['Accordato'] == df['Accordato Operativo']) |
-            (df['Accordato'] == df['Utilizzato']) |
-            (df['Accordato Operativo'] == df['Utilizzato'])
-        )
+# Create a mask based on the specified conditions
+mask = (
+    (df['Accordato'] == df['Accordato Operativo']) |
+    (df['Accordato'] == df['Utilizzato']) |
+    (df['Accordato Operativo'] == df['Utilizzato'])
+)
 
-        # Apply the mask to filter the DataFrame
-        df = df[mask]
+# Apply the mask to filter the DataFrame
+df = df[mask]
 
 col1, col2 = st.columns((2))
 df['Periodo_dt'] = df['Periodo'].apply(italian_date_to_datetime)
