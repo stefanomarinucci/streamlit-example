@@ -78,6 +78,9 @@ def italian_date_to_datetime(italian_date):
     
     # Reset the locale to the default
     locale.setlocale(locale.LC_TIME, '')
+    
+    return date_object  # Aggiungi questa riga per restituire l'oggetto datetime
+
 
 def create_df_from_pdf(pdf_path):
 
