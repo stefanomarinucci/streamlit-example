@@ -45,6 +45,21 @@ mask = (
 df = df[mask]
 st.write(df)
 
+# Download as Excel Button
+# Create a Pandas Excel writer using XlsxWriter as the engine.
+with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
+    # Write each dataframe to a different worksheet.
+    df.to_excel(writer, sheet_name='Centrale Rischi')
+
+    # Close the Pandas Excel writer and output the Excel file to the buffer
+    writer.save()
+
+    st.download_button(
+        label="Download Excel worksheets",
+        data=buffer,
+        file_name="pandas_multiple.xlsx",
+        mime="application/vnd.ms-excel")
+
 col1, col2 = st.columns((2))
 df['Periodo_dt'] = df['Periodo'].apply(italian_date_to_datetime)
 
