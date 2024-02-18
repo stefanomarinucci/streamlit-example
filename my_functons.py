@@ -103,7 +103,7 @@ def create_df_from_pdf(pdf_path):
 
         # Process each section separately
         for i, section_text in enumerate(intermediario_sections):
-            section_names = ["RISCHI AUTOLIQUIDANTI", "RISCHI A SCADENZA", "RISCHI A REVOCA"]
+            section_names = ["NAZIONALI DIVERSE DA", "RISCHI AUTOLIQUIDANTI", "RISCHI A SCADENZA", "RISCHI A REVOCA"]
 
             # Create a list of dictionaries, each representing a row
             rows_list = []
@@ -156,5 +156,17 @@ def create_df_from_pdf(pdf_path):
     df['Accordato Operativo'] = df['Accordato Operativo'].astype(int)
     df['Utilizzato'] = df['Utilizzato'].astype(int)
 
+    df['Section Name'] = df['Section Name'].replace("NAZIONALI DIVERSE DA", "RISCHI AUTOLIQUIDANTI")    
+    # Assuming df is your DataFrame
+    # Replace 'df' with the actual name of your DataFrame if it's different
+
+    # Create a mask based on the specified conditions
+    mask = ((df['Accordato'] == df['Accordato Operativo']) |
+            (df['Accordato'] == df['Utilizzato']) |
+            (df['Accordato Operativo'] == df['Utilizzato']))
+
+    # Apply the mask to filter the DataFrame
+    result_df = df[mask]    
     # Now df has new column names
-    return df
+
+    return result_df
