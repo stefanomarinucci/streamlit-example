@@ -45,14 +45,11 @@ df = df[mask]
 st.write(df)
 
 # Download as Excel Button
-# Create a Pandas Excel writer using XlsxWriter as the engine.
-# Write DataFrame to an Excel file in memory
-buffer = io.BytesIO()
-# Write DataFrame to an Excel file in memory
-buffer = io.BytesIO()
+# Create a temporary file to store the Excel file
+temp_file = tempfile.NamedTemporaryFile(suffix='.xlsx')
 
 # Create a new Excel workbook using xlsxwriter
-workbook = xlsxwriter.Workbook(buffer, {'in_memory': True})
+workbook = xlsxwriter.Workbook(temp_file.name)
 
 # Add a worksheet to the workbook
 worksheet = workbook.add_worksheet()
@@ -65,7 +62,7 @@ for row_num, row_data in enumerate(df.values):
 workbook.close()
 
 # Provide a download button for users to download the Excel file
-st.download_button(label="Download Excel worksheets", data=buffer.getvalue(), file_name="Centrale_rischi.xlsx", mime="application/vnd.ms-excel")
+st.download_button(label="Download Excel worksheets", data=temp_file.name, file_name="Centrale_rischi.xlsx", mime="application/vnd.ms-excel")
 
 col1, col2 = st.columns((2))
 df['Periodo_dt'] = df['Periodo'].apply(italian_date_to_datetime)
