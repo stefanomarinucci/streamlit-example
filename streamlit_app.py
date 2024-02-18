@@ -14,9 +14,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from datetime import datetime
 import locale
-import xlsxwriter
+import XlsxWriter
 from io import BytesIO
-pip install xlswriter
 
 # Welcome to Streamlit!
 
