@@ -44,26 +44,6 @@ mask = (
 df = df[mask]
 st.write(df)
 
-# Download as Excel Button
-# Create a temporary file to store the Excel file
-temp_file = tempfile.NamedTemporaryFile(suffix='.xlsx')
-
-# Create a new Excel workbook using xlsxwriter
-workbook = xlsxwriter.Workbook(temp_file.name)
-
-# Add a worksheet to the workbook
-worksheet = workbook.add_worksheet()
-
-# Write DataFrame to the worksheet
-for row_num, row_data in enumerate(df.values):
-    worksheet.write_row(row_num, 0, row_data)
-
-# Close the workbook
-workbook.close()
-
-# Provide a download button for users to download the Excel file
-st.download_button(label="Download Excel worksheets", data=temp_file.name, file_name="Centrale_rischi.xlsx", mime="application/vnd.ms-excel")
-
 col1, col2 = st.columns((2))
 df['Periodo_dt'] = df['Periodo'].apply(italian_date_to_datetime)
 
@@ -78,32 +58,6 @@ with col2:
 
 df = df[(df["Periodo_dt"] >= date1) & (df["Periodo_dt"] <= date2)].copy()
 
-st.sidebar.header("Seleziona il filtro: ")
-# Create for Categoria
-Categoria = st.sidebar.multiselect("Seleziona Categoria", df["Categoria"].unique())
-if not Categoria:
-    df2 = df.copy()
-else:
-    df2 = df[df["Categoria"].isin(Categoria)]
-
-# Create for Intermediario
-Intermediario = st.sidebar.multiselect("Seleziona Intermediario", df2["Intermediario"].unique())
-if not Intermediario:
-    df3 = df2.copy()
-else:
-    df3 = df2[df2["Intermediario"].isin(Intermediario)]
-
-# Filtro in base a Categoria e Intermediario
-
-if not Categoria and not Intermediario:
-    filtered_df = df
-elif not Categoria:
-    filtered_df = df[df["Intermediario"].isin(Intermediario)]
-elif not Intermediario:
-    filtered_df = df[df["Categoria"].isin(Categoria)]
-elif Categoria and Intermediario:
-    filtered_df = df3[df["Intermediario"].isin(Intermediario) & df3["Categoria"].isin(Categoria)]
-
 # Filter the DataFrame to include only "RISCHI AUTOLIQUIDANTI" and "RISCHI A SCADENZA"
 filtered_df = df[df['Categoria'].isin(['RISCHI AUTOLIQUIDANTI', 'RISCHI A REVOCA'])]
 # Create a new DataFrame with the desired calculation
@@ -114,7 +68,7 @@ ratio_df['Utilizzato_to_Accordato_Operativo_Ratio_Percentage'] = ratio_df['Utili
 with col1:
         st.subheader("Utilizzato to Accordato Operativo Ratio over Time")
         fig = px.bar(ratio_df, x = "Periodo_dt", y = "Utilizzato_to_Accordato_Operativo_Ratio_Percentage", template = "seaborn")
-        st.plotly_chart(fig,use_container_width=True, height = 200)
+        st.plotly_chart(fig, height = 200)
 
 with col2:
         st.subheader("Utilizzato per Intermediario")
