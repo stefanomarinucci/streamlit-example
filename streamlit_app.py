@@ -14,7 +14,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from datetime import datetime
 import locale
-import xlsxwriter
 
 # Welcome to Streamlit!
 
