@@ -48,16 +48,18 @@ st.write(df)
 # Create a Pandas Excel writer using XlsxWriter as the engine.
 # Write DataFrame to an Excel file in memory
 buffer = io.BytesIO()
-with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
-    df.to_excel(writer, sheet_name='Centrale Rischi', index=False)
+# Write DataFrame to an Excel file in memory
+buffer = io.BytesIO()
 
-# Set up the Excel writer
+# Create a new Excel workbook using xlsxwriter
 workbook = xlsxwriter.Workbook(buffer, {'in_memory': True})
+
+# Add a worksheet to the workbook
 worksheet = workbook.add_worksheet()
 
-# Write the DataFrame to the worksheet
-for i, row in enumerate(df.values):
-    worksheet.write_row(i, 0, row)
+# Write DataFrame to the worksheet
+for row_num, row_data in enumerate(df.values):
+    worksheet.write_row(row_num, 0, row_data)
 
 # Close the workbook
 workbook.close()
