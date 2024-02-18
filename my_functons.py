@@ -154,19 +154,7 @@ def create_df_from_pdf(pdf_path):
 
     df['Accordato'] = df['Accordato'].astype(int)
     df['Accordato Operativo'] = df['Accordato Operativo'].astype(int)
-    df['Utilizzato'] = df['Utilizzato'].astype(int)
+    df['Utilizzato'] = df['Utilizzato'].astype(int) 
 
-    df['Section Name'] = df['Section Name'].replace("NAZIONALI DIVERSE DA", "RISCHI AUTOLIQUIDANTI")    
-    # Assuming df is your DataFrame
-    # Replace 'df' with the actual name of your DataFrame if it's different
-
-    # Create a mask based on the specified conditions
-    mask = ((df['Accordato'] == df['Accordato Operativo']) |
-            (df['Accordato'] == df['Utilizzato']) |
-            (df['Accordato Operativo'] == df['Utilizzato']))
-
-    # Apply the mask to filter the DataFrame
-    result_df = df[mask]    
-    # Now df has new column names
-
-    return result_df
+    df['Categoria'] = df['Categoria'].replace("NAZIONALI DIVERSE DA", "RISCHI AUTOLIQUIDANTI")       
+    return df
