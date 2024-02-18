@@ -69,7 +69,7 @@ with col1:
         st.subheader("Utilizzato su Accordato Operativo")
         fig = px.bar(ratio_df, x = "Periodo_dt", y = "Utilizzato_to_Accordato_Operativo_Ratio_Percentage", template = "seaborn")
         st.plotly_chart(fig, height = 200)
-        st.ratio_df
+        st.write(ratio_df)
 
 with col2:
         st.subheader("Utilizzato per Intermediario")
