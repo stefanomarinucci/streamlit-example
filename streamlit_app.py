@@ -16,7 +16,7 @@ from datetime import datetime
 import locale
 import xlsxwriter
 from io import BytesIO
-
+pip install xlswriter
 
 # Welcome to Streamlit!
 
