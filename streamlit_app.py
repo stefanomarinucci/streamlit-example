@@ -15,7 +15,6 @@ import seaborn as sns
 from datetime import datetime
 import locale
 import xlsxwriter
-from io import BytesIO
 
 # Welcome to Streamlit!
 
@@ -48,15 +47,24 @@ st.write(df)
 
 # Download as Excel Button
 # Create a Pandas Excel writer using XlsxWriter as the engine.
+# Write DataFrame to an Excel file in memory
 buffer = io.BytesIO()
 with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
-    # Write each dataframe to a different worksheet.
-    df.to_excel(writer, sheet_name='Centrale Rischi')
+    df.to_excel(writer, sheet_name='Centrale Rischi', index=False)
 
-    # Close the Pandas Excel writer and output the Excel file to the buffer
-    writer.save()
+# Set up the Excel writer
+workbook = xlsxwriter.Workbook(buffer, {'in_memory': True})
+worksheet = workbook.add_worksheet()
 
-st.download_button(label="Download Excel worksheets",data=buffer,file_name="Centrale_rischi.xlsx",mime="application/vnd.ms-excel")
+# Write the DataFrame to the worksheet
+for i, row in enumerate(df.values):
+    worksheet.write_row(i, 0, row)
+
+# Close the workbook
+workbook.close()
+
+# Provide a download button for users to download the Excel file
+st.download_button(label="Download Excel worksheets", data=buffer.getvalue(), file_name="Centrale_rischi.xlsx", mime="application/vnd.ms-excel")
 
 col1, col2 = st.columns((2))
 df['Periodo_dt'] = df['Periodo'].apply(italian_date_to_datetime)
