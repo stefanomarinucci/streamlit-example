@@ -14,7 +14,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from datetime import datetime
 import locale
-from st_aggrid import AgGrid
 
 # Welcome to Streamlit!
 
@@ -43,7 +42,7 @@ mask = (
 
 # Apply the mask to filter the DataFrame
 df = df[mask]
-AgGrid(df)
+st.write(df)
 
 col1, col2 = st.columns((2))
 df['Periodo_dt'] = df['Periodo'].apply(italian_date_to_datetime)
