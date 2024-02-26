@@ -74,6 +74,6 @@ with col1:
 
 with col2:
         st.subheader("Utilizzato per Intermediario")
-        fig = px.pie(filtered_df, values = "Utilizzato", names = "Intermediario", hole = 0.5)
-        fig.update_traces(text = filtered_df["Intermediario"], textposition = "outside")
+        fig = px.pie(df, values = "Utilizzato", names = "Intermediario", hole = 0.5)
+        fig.update_traces(text = df["Intermediario"], textposition = "outside")
         st.plotly_chart(fig,use_container_width=True)
