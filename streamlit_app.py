@@ -70,6 +70,8 @@ with col1:
         fig = px.bar(ratio_df, x = "Periodo_dt", y = "Utilizzato su Acc. Operativo (%)", template = "seaborn")
         st.write(ratio_df)
         st.plotly_chart(fig, height = 200)
+        st.subheader("Utilizzato su Accordato Operativo per Intermediario")
+        st.write(filtered_df)
         
 
 with col2:
