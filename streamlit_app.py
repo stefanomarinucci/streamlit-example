@@ -73,7 +73,6 @@ with col1:
         st.subheader("Utilizzato su Accordato Operativo per Intermediario")
         st.write(filtered_df.gruopby('Periodo_dt')
         
-
 with col2:
         st.subheader("Utilizzato per Intermediario")
         fig = px.pie(df, values = "Utilizzato", names = "Intermediario", hole = 0.5)
