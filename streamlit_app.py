@@ -63,12 +63,13 @@ filtered_df = df[df['Categoria'].isin(['RISCHI AUTOLIQUIDANTI', 'RISCHI A REVOCA
 # Create a new DataFrame with the desired calculation
 ratio_df = filtered_df.groupby('Periodo_dt').apply(lambda group: group['Utilizzato'].sum() / group['Accordato Operativo'].sum()).reset_index(name='Utilizzato_to_Accordato_Operativo_Ratio')
 ratio_df = ratio_df.sort_values('Periodo_dt')
-ratio_df['Utilizzato_to_Accordato_Operativo_Ratio_Percentage'] = ratio_df['Utilizzato_to_Accordato_Operativo_Ratio'] * 100
+ratio_df_1['Utilizzato_to_Accordato_Operativo_Ratio_Percentage'] = ratio_df['Utilizzato_to_Accordato_Operativo_Ratio'] * 100
 
 with col1:
         st.subheader("Utilizzato su Accordato Operativo")
         fig = px.bar(ratio_df, x = "Periodo_dt", y = "Utilizzato_to_Accordato_Operativo_Ratio_Percentage", template = "seaborn")
         st.write(ratio_df)
+        st.write(ratio_df_1)
         st.plotly_chart(fig, height = 200)
         
 
