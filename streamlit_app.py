@@ -71,7 +71,7 @@ with col1:
         st.write(ratio_df)
         st.plotly_chart(fig, height = 200)
         st.subheader("Utilizzato su Accordato Operativo per Intermediario")
-        st.write(filtered_df)
+        st.write(filtered_df.gruopby('Periodo_dt')
         
 
 with col2:
