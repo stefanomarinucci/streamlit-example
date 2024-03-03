@@ -61,9 +61,9 @@ df = df[(df["Periodo_dt"] >= date1) & (df["Periodo_dt"] <= date2)].copy()
 # Filter the DataFrame to include only "RISCHI AUTOLIQUIDANTI" and "RISCHI A SCADENZA"
 filtered_df = df[df['Categoria'].isin(['RISCHI AUTOLIQUIDANTI', 'RISCHI A REVOCA'])]
 # Create a new DataFrame with the desired calculation
-ratio_df = filtered_df.groupby('Periodo_dt').apply(lambda group: group['Utilizzato'].sum() / group['Accordato Operativo'].sum()).reset_index(name='Utilizzato_to_Accordato_Operativo_Ratio')
+ratio_df = filtered_df.groupby('Periodo_dt').apply(lambda group: group['Utilizzato'].sum() / group['Accordato Operativo'].sum()).reset_index(name='Utilizzato su Acc. Operativo')
 ratio_df = ratio_df.sort_values('Periodo_dt')
-ratio_df['Utilizzato_to_Accordato_Operativo_Ratio_Percentage'] = ratio_df['Utilizzato_to_Accordato_Operativo_Ratio'] * 100
+ratio_df['Utilizzato su Acc. Operativo (%)'] = ratio_df[''Utilizzato su Acc. Operativo''] * 100
 
 with col1:
         st.subheader("Utilizzato su Accordato Operativo")
