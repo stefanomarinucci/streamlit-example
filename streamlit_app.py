@@ -63,7 +63,7 @@ filtered_df = df[df['Categoria'].isin(['RISCHI AUTOLIQUIDANTI', 'RISCHI A REVOCA
 # Create a new DataFrame with the desired calculation
 ratio_df = filtered_df.groupby('Periodo_dt').apply(lambda group: group['Utilizzato'].sum() / group['Accordato Operativo'].sum()).reset_index(name='Utilizzato su Acc. Operativo')
 ratio_df = ratio_df.sort_values('Periodo_dt')
-ratio_df['Utilizzato su Acc. Operativo (%)'] = ratio_df[''Utilizzato su Acc. Operativo''] * 100
+ratio_df['Utilizzato su Acc. Operativo (%)'] = ratio_df['Utilizzato su Acc. Operativo'] * 100
 
 with col1:
         st.subheader("Utilizzato su Accordato Operativo")
